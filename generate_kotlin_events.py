@@ -4,7 +4,9 @@ import glob
 
 SCHEMA_DIR = "schemas"
 MAPPING_DIR = "mappings"
-OUTPUT_KOTLIN_DIR = "output/kotlin"
+
+# Görseldeki klasör hiyerarşisine tam uyan hedef çıktı dizini
+OUTPUT_KOTLIN_DIR = "./core/analytics/src/main/java/com/example/core/analytics/generated"
 
 os.makedirs(OUTPUT_KOTLIN_DIR, exist_ok=True)
 
@@ -70,11 +72,12 @@ for schema_path in schema_files:
 
     when_code = "\n".join(when_branches)
 
+    # Paket adı ve Import yolları projendeki yeni :core:analytics modülüne göre güncellendi
     kotlin_class = f"""// Generative AI tarafından otomatik üretilmiştir - Elle değiştirmeyiniz
-package com.example.analytics.generated
+package com.example.core.analytics.generated
 
-import com.example.analytics.EventModel
-import com.example.analytics.AnalyticsDestination
+import com.example.core.analytics.EventModel
+import com.example.core.analytics.AnalyticsDestination
 
 data class {class_name}(
 {params_code}
@@ -103,4 +106,4 @@ data class {class_name}(
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(kotlin_class)
 
-    print(f"Kotlin sınıfı üretildi: {class_name}.kt")
+    print(f"Kotlin sınıfı üretildi: {class_name}.kt -> {output_path}")
