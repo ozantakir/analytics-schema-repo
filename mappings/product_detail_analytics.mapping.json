@@ -1,0 +1,25 @@
+{
+  "event_name": "add_to_cart_clicked",
+  "destinations": [
+    "FIREBASE",
+    "ADJUST",
+    "SGTM"
+  ],
+  "destination_payloads": {
+    "FIREBASE": {
+      "item_id": "productId",
+      "value": "price",
+      "quantity": "quantity",
+      "item_category": "category"
+    },
+    "ADJUST": {
+      "revenue": "price"
+    },
+    "SGTM": {
+      "product_id": "productId",
+      "price": "price",
+      "quantity": "quantity",
+      "category": "category"
+    }
+  }
+}
