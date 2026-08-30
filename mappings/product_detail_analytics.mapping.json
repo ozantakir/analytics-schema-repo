@@ -3,7 +3,7 @@
   "destinations": [
     "FIREBASE",
     "ADJUST",
-    "SGTM"
+    "INSIDER"
   ],
   "destination_payloads": {
     "FIREBASE": {
@@ -15,7 +15,7 @@
     "ADJUST": {
       "revenue": "price"
     },
-    "SGTM": {
+    "INSIDER": {
       "product_id": "productId",
       "price": "price",
       "quantity": "quantity",
