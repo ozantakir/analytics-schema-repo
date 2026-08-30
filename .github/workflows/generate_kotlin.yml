@@ -31,11 +31,22 @@ jobs:
           
           git clone https://x-access-token:${TOKEN}@github.com/ozantakir/AnalyticsAndroidExample.git android_repo
           
-          # Üretilen Kotlin sınıflarını Android projesine kopyala
-          TARGET_DIR="android_repo/app/src/main/java/com/example/analytics/generated"
+          # 1. Hedef dizini yeni :core:analytics modülüne yönlendir
+          TARGET_DIR="android_repo/core/analytics/src/main/java/com/example/core/analytics/generated"
+          
+          # 2. Hedef klasör yoksa oluştur
           mkdir -p $TARGET_DIR
+          
+          # 3. Eski generated dosyalarını temizle
           rm -rf $TARGET_DIR/*
-          cp output/kotlin/*.kt $TARGET_DIR/
+          
+          # 4. Python script'inin ürettiği dosyaları kontrol et ve kopyala
+          if [ -d "output/kotlin" ] && [ "$(ls -A output/kotlin/*.kt 2>/dev/null)" ]; then
+            cp output/kotlin/*.kt $TARGET_DIR/
+          else
+            echo "HATA: output/kotlin/ dizininde .kt dosyası bulunamadı!"
+            exit 1
+          fi
           
           cd android_repo
           
@@ -48,7 +59,6 @@ jobs:
             git commit -m "auto: update generated analytics event models"
             git push origin $BRANCH_NAME
             
-            # --base master olarak güncellendi:
             gh pr create --repo ozantakir/AnalyticsAndroidExample \
                          --title "🤖 Auto: Analytics Event Models Güncellendi" \
                          --body "Bu PR Spec-Driven Analytics pipeline tarafından otomatik üretilmiştir." \

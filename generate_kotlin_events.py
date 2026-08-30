@@ -6,7 +6,7 @@ SCHEMA_DIR = "schemas"
 MAPPING_DIR = "mappings"
 
 # Görseldeki klasör hiyerarşisine tam uyan hedef çıktı dizini
-OUTPUT_KOTLIN_DIR = "./core/analytics/src/main/java/com/example/core/analytics/generated"
+OUTPUT_KOTLIN_DIR = "output/kotlin"
 
 os.makedirs(OUTPUT_KOTLIN_DIR, exist_ok=True)
 
