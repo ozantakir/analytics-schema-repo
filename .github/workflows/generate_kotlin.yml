@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build-and-pr:
@@ -28,8 +29,8 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Android Reposunu klonla
-          git clone https://x-access-token:${TOKEN}@github.com/ozantakir/AnalyticsAndroidExample.git android_repo
+          # Android Reposunu klonla (<GITHUB_KULLANICI_ADIN> alanını güncellemeyi unutma)
+          git clone https://x-access-token:${TOKEN}@github.com/<GITHUB_KULLANICI_ADIN>/analytics-android-example.git android_repo
           
           # Üretilen Kotlin sınıflarını Android projesine kopyala
           TARGET_DIR="android_repo/app/src/main/java/com/example/analytics/generated"
