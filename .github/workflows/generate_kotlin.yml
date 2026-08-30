@@ -1,0 +1,58 @@
+name: Generate Kotlin Event Models & Open PR to Android
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Schema Repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Run Kotlin Generator Script
+        run: python generate_kotlin_events.py
+
+      - name: Checkout Android Repo & Create PR
+        env:
+          TOKEN: ${{ secrets.AUTO_COMMIT_TOKEN }}
+          GH_TOKEN: ${{ secrets.AUTO_COMMIT_TOKEN }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Android Reposunu klonla
+          git clone https://x-access-token:${TOKEN}@github.com/ozantakir/AnalyticsAndroidExample.git android_repo
+          
+          # Üretilen Kotlin sınıflarını Android projesine kopyala
+          TARGET_DIR="android_repo/app/src/main/java/com/example/analytics/generated"
+          mkdir -p $TARGET_DIR
+          rm -rf $TARGET_DIR/*
+          cp output/kotlin/*.kt $TARGET_DIR/
+          
+          cd android_repo
+          
+          # Yeni bir branch açıp PR gönder
+          BRANCH_NAME="auto/analytics-update-$(date +%s)"
+          git checkout -b $BRANCH_NAME
+          git add .
+          
+          if ! git diff-index --quiet HEAD; then
+            git commit -m "auto: update generated analytics event models"
+            git push origin $BRANCH_NAME
+            
+            # GitHub CLI ile PR Aç
+            gh pr create --title "🤖 Auto: Analytics Event Models Güncellendi" \
+                         --body "Bu PR Spec-Driven Analytics pipeline tarafından otomatik üretilmiştir." \
+                         --head $BRANCH_NAME \
+                         --base main
+          else
+            echo "Herhangi bir değişiklik yok, PR açılmadı."
+          fi
