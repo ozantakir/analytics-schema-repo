@@ -3,17 +3,17 @@
   "title": "AddToCartClicked",
   "type": "object",
   "properties": {
-    "product_id": {
+    "productId": {
       "type": "string",
-      "description": "Eklenen \u00fcr\u00fcn\u00fcn ID'si"
+      "description": "\u00dcr\u00fcn ID bilgisi"
     },
-    "product_name": {
-      "type": "string",
-      "description": "\u00dcr\u00fcn\u00fcn ad\u0131"
-    },
-    "unit_price": {
+    "price": {
       "type": "number",
       "description": "\u00dcr\u00fcn birim fiyat\u0131"
+    },
+    "quantity": {
+      "type": "integer",
+      "description": "Eklenen adet"
     },
     "category": {
       "type": "string",
@@ -21,8 +21,8 @@
     }
   },
   "required": [
-    "product_id",
-    "product_name",
-    "unit_price"
+    "productId",
+    "price",
+    "quantity"
   ]
 }
