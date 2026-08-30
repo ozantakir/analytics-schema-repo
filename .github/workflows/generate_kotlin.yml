@@ -48,11 +48,12 @@ jobs:
             git commit -m "auto: update generated analytics event models"
             git push origin $BRANCH_NAME
             
-            # GitHub CLI ile PR Aç
-            gh pr create --title "🤖 Auto: Analytics Event Models Güncellendi" \
+            # --base master olarak güncellendi:
+            gh pr create --repo ozantakir/AnalyticsAndroidExample \
+                         --title "🤖 Auto: Analytics Event Models Güncellendi" \
                          --body "Bu PR Spec-Driven Analytics pipeline tarafından otomatik üretilmiştir." \
                          --head $BRANCH_NAME \
-                         --base main
+                         --base master
           else
             echo "Herhangi bir değişiklik yok, PR açılmadı."
           fi
