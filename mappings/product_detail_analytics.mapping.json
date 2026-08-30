@@ -5,5 +5,22 @@
     "ADJUST",
     "SGTM"
   ],
-  "destination_payloads": {}
+  "destination_payloads": {
+    "FIREBASE": {
+      "item_id": "$.productId",
+      "item_name": "$.title",
+      "price": "$.price",
+      "item_category": "$.category"
+    },
+    "ADJUST": {
+      "product_id": "$.productId",
+      "revenue": "$.price"
+    },
+    "SGTM": {
+      "product_id": "$.productId",
+      "product_name": "$.title",
+      "unit_price": "$.price",
+      "category": "$.category"
+    }
+  }
 }
