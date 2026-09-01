@@ -1,0 +1,11 @@
+{
+  "event_name": "product_view",
+  "destinations": [
+    "FIREBASE"
+  ],
+  "destination_payloads": {
+    "FIREBASE": {
+      "item_id": "productId"
+    }
+  }
+}
