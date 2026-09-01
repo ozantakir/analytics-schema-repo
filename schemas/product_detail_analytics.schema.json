@@ -1,6 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "AddToCartClicked",
+  "description": "Kullan\u0131c\u0131 \u00fcr\u00fcn detay ekran\u0131nda sepeti ekle butonuna bast\u0131\u011f\u0131nda tetiklenir.",
   "type": "object",
   "properties": {
     "productId": {
