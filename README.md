@@ -1,3 +1,13 @@
---- Analytics event schema repo ---
+# Central Analytics Schema Repository
 
-This project is updated only by changes in the https://github.com/ozantakir/analytics-source-spec project. Auto-update creates event schema and mapping, then opens a pr to the https://github.com/ozantakir/AnalyticsAndroidExample for a new EventModel.
+This repository is the **Single Source of Truth** for all analytics events.
+
+## Key Principles
+- **JSON Schema Rules:** Contains raw JSON schemas for every event tracked in production.
+- **Multi-Destination Declarations:** Maps events to target platforms (`FIREBASE`, `ADJUST`, `INSIDER`, etc.).
+- **Code Generation Engine:** Runs automated generator scripts to build target models whenever schemas update.
+
+## CI/CD Pipeline Workflow
+When a Pull Request is merged into `main`:
+1. `generate_kotlin_events.py` runs automatically to output strongly-typed `EventModel` classes.
+2. Automated GitHub Action opens Pull Request to the **https://github.com/ozantakir/AnalyticsAndroidExample** repositories with updated generated code.
