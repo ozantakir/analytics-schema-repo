@@ -1,25 +1,38 @@
-{
-  "event_name": "add_to_cart_clicked",
-  "destinations": [
-    "FIREBASE",
-    "ADJUST",
-    "INSIDER"
-  ],
-  "destination_payloads": {
-    "FIREBASE": {
-      "item_id": "productId",
-      "value": "price",
-      "quantity": "quantity",
-      "item_category": "category"
-    },
-    "ADJUST": {
-      "revenue": "price"
-    },
-    "INSIDER": {
-      "product_id": "productId",
-      "price": "price",
-      "quantity": "quantity",
-      "category": "category"
+[
+  {
+    "event_name": "add_to_cart_clicked",
+    "destinations": [
+      "FIREBASE",
+      "ADJUST",
+      "INSIDER"
+    ],
+    "destination_payloads": {
+      "FIREBASE": {
+        "item_id": "productId",
+        "value": "price",
+        "quantity": "quantity",
+        "item_category": "category"
+      },
+      "ADJUST": {
+        "revenue": "price"
+      },
+      "INSIDER": {
+        "product_id": "productId",
+        "price": "price",
+        "quantity": "quantity",
+        "category": "category"
+      }
+    }
+  },
+  {
+    "event_name": "product_view",
+    "destinations": [
+      "FIREBASE"
+    ],
+    "destination_payloads": {
+      "FIREBASE": {
+        "item_id": "productId"
+      }
     }
   }
-}
+]
