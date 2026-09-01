@@ -1,6 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "ProductView",
+  "title": "product_view",
+  "description": "Kullan\u0131c\u0131 \u00fcr\u00fcn detay ekran\u0131n\u0131 g\u00f6r\u00fcnce tetiklenir.",
   "type": "object",
   "properties": {
     "productId": {
